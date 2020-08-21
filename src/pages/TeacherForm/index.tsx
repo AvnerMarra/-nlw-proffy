@@ -18,10 +18,7 @@ function addNewScheduleItem(){
         ...scheduleItems,
         { week_day: 0, from: '', to: '' }
     ]);
-}    
-
-function removeScheduleItem() {
-    
+ 
 
 }
     return (
@@ -85,7 +82,7 @@ function removeScheduleItem() {
                                 />
                                 <Input name="from" label="Das" type="time" />
                                 <Input name="to" label="Até" type="time" />
-                                <button type="button" onClick={removeScheduleItem}>-</button>
+                                
                             </div>
                         )
                     })}

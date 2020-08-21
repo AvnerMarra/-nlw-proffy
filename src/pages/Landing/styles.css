@@ -130,9 +130,6 @@
     font-size: 3.6rem;
 }
 
-.logo-container img {
-    height: 100%;
-}
 
 .buttons-container {
     grid-area: buttons;

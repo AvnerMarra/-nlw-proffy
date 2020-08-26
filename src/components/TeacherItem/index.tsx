@@ -3,32 +3,54 @@ import whatsappIcon from '../../assests/images/icons/whatsapp.svg';
 
 
 import './styles.css'
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+    function createNewConneciton() {
+        api.post('/connections', {
+            user_id: teacher.id
+        });
+    }
+
+
     return (<article className="teacher-item">
         <header>
-            <img src="https://pbs.twimg.com/profile_images/908291212377026560/MI5fKVk9_400x400.jpg" alt="Avner Marra" />
+            <img src={teacher.avatar} alt={teacher.name} />
             <div>
-                <strong>Avner Marra</strong>
-                <span>Física</span>
+                <strong>{teacher.name}</strong>
+                <span>{teacher.subject}</span>
             </div>
         </header>
 
-        <p>
-            Professor aleatorio que está aleatoriamente ensinando essa matéria.
-                        <br /><br />
-                        A aleatoriedade das cosias é bastante aleatória o que deixa tudo aleatoriamente aleatório.
-                    </p>
+        <p>{teacher.bio}</p>
 
         <footer>
             <p>
                 Preço/hora
-                            <strong>R$50,00</strong>
+                            <strong> R$ {teacher.cost}</strong>
             </p>
-            <button type="button">
+            <a
+                target="_blank"
+                onClick={createNewConneciton}
+                href={`https://wa.me/${teacher.whatsapp}`}>
                 <img src={whatsappIcon} alt="Whatsapp" />
                             Entrar em contato.
-                        </button>
+            </a>
 
         </footer>
 
